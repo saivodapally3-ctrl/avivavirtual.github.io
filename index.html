@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="AvivaVirtual — Professional Virtual Care and Tech Support. Always available, always human. Remote health support, IT help, and digital assistance for individuals and businesses across Canada."/>
+<meta name="keywords" content="virtual care, tech support, remote IT support, telehealth, virtual assistant, Canada, AvivaVirtual"/>
+<meta property="og:title" content="AvivaVirtual — Virtual Care & Tech Support"/>
+<meta property="og:description" content="Always available, always human. Professional virtual care and tech support across Canada."/>
+<meta property="og:url" content="https://avivavirtual.com"/>
+<meta property="og:type" content="website"/>
+<title>AvivaVirtual — Virtual Care & Tech Support</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+
+<style>
+/* =========================================
+   AVIVAVIRTUAL — DESIGN SYSTEM
+   Theme: Clean, Human, Trustworthy
+   ========================================= */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --teal:     #0A7A6A;
+  --teal-d:   #065E52;
+  --teal-l:   #14A68F;
+  --teal-xl:  #E6F5F3;
+  --teal-xxl: #F2FAF9;
+  --coral:    #E8563A;
+  --coral-l:  #FDF1EE;
+  --gold:     #D4962A;
+  --ink:      #12201C;
+  --ink2:     #1F3530;
+  --mid:      #4A6B64;
+  --muted:    #7A9992;
+  --line:     #D8ECEA;
+  --bg:       #FFFFFF;
+  --bg2:      #F7FBFA;
+  --bg3:      #EEF7F5;
+  --font-d:   'Cormorant Garant', Georgia, serif;
+  --font-b:   'Nunito', sans-serif;
+  --r:        cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: var(--font-b);
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--teal-xxl); }
+::-webkit-scrollbar-thumb { background: var(--teal); border-radius: 4px; }
+
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; display: block; }
+
+/* ===== UTILITIES ===== */
+.container { max-width: 1120px; margin: 0 auto; padding: 0 2rem; }
+.text-teal { color: var(--teal); }
+.text-coral { color: var(--coral); }
+
+/* ===== REVEAL ANIMATIONS ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.75s var(--r), transform 0.75s var(--r);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.r1 { transition-delay: 0.08s; }
+.r2 { transition-delay: 0.16s; }
+.r3 { transition-delay: 0.24s; }
+.r4 { transition-delay: 0.32s; }
+
+/* ===== NAVIGATION ===== */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  height: 70px;
+  display: flex; align-items: center;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(16px) saturate(160%);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+nav.scrolled {
+  border-color: var(--line);
+  box-shadow: 0 1px 24px rgba(10,122,106,0.07);
+}
+.nav-inner {
+  max-width: 1120px; margin: 0 auto; padding: 0 2rem;
+  width: 100%; display: flex; align-items: center; justify-content: space-between;
+}
+
+/* LOGO */
+.logo { display: flex; align-items: center; gap: 10px; }
+.logo-mark {
+  width: 38px; height: 38px; flex-shrink: 0;
+}
+.logo-text {
+  display: flex; flex-direction: column; line-height: 1;
+}
+.logo-name {
+  font-family: var(--font-d); font-size: 20px; font-weight: 700;
+  color: var(--teal); letter-spacing: -0.3px;
+}
+.logo-sub {
+  font-size: 9px; font-weight: 600; color: var(--muted);
+  letter-spacing: 1.8px; text-transform: uppercase; margin-top: 1px;
+}
+
+.nav-links {
+  display: flex; align-items: center; gap: 2.2rem;
+}
+.nav-links a {
+  font-size: 13.5px; font-weight: 500; color: var(--mid);
+  transition: color 0.2s; position: relative;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -3px; left: 0;
+  width: 0; height: 1.5px; background: var(--teal);
+  transition: width 0.3s var(--r);
+}
+.nav-links a:hover { color: var(--teal); }
+.nav-links a:hover::after { width: 100%; }
+.nav-btn {
+  background: var(--teal); color: #fff !important;
+  padding: 9px 22px; border-radius: 30px;
+  font-size: 13px; font-weight: 700;
+  transition: background 0.2s, transform 0.15s !important;
+  letter-spacing: 0.2px;
+}
+.nav-btn::after { display: none !important; }
+.nav-btn:hover { background: var(--teal-d) !important; transform: translateY(-1px); }
+.hamburger {
+  display: none; background: none; border: none;
+  flex-direction: column; gap: 5px; padding: 6px; cursor: pointer;
+}
+.hamburger span { display: block; width: 22px; height: 1.5px; background: var(--ink); transition: all 0.3s; }
+.mob-menu {
+  display: none; position: fixed; top: 70px; left: 0; right: 0; z-index: 199;
+  background: rgba(255,255,255,0.97); backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--line); padding: 1.5rem 2rem;
+  flex-direction: column; gap: 1.2rem;
+}
+.mob-menu.open { display: flex; }
+.mob-menu a { font-size: 16px; font-weight: 500; color: var(--mid); }
+.mob-menu a:last-child {
+  background: var(--teal); color: white; padding: 11px 24px;
+  border-radius: 30px; text-align: center; font-weight: 700;
+}
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  background: var(--bg2);
+  padding: 120px 2rem 80px;
+  position: relative; overflow: hidden;
+}
+
+/* Decorative SVG background */
+.hero-bg {
+  position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none;
+}
+.hero-orb {
+  position: absolute; border-radius: 50%;
+  background: radial-gradient(circle, var(--teal-xl) 0%, transparent 70%);
+}
+.orb1 { width: 700px; height: 700px; top: -200px; right: -150px; opacity: 0.9; }
+.orb2 { width: 400px; height: 400px; bottom: -100px; left: -80px; opacity: 0.7; }
+
+.hero-inner {
+  max-width: 1120px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 5rem; align-items: center; position: relative; z-index: 1;
+  width: 100%;
+}
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--teal-xl); border: 1px solid rgba(10,122,106,0.2);
+  color: var(--teal); padding: 5px 14px; border-radius: 30px;
+  font-size: 11.5px; font-weight: 600; letter-spacing: 0.5px;
+  margin-bottom: 1.4rem;
+  animation: fadeUp 0.7s var(--r) both;
+}
+.badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); animation: breathe 2.4s ease-in-out infinite; }
+@keyframes breathe { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.6);opacity:0.5} }
+
+.hero h1 {
+  font-family: var(--font-d);
+  font-size: clamp(3rem, 5.5vw, 5.2rem);
+  font-weight: 700; line-height: 1.08; letter-spacing: -1.5px;
+  color: var(--ink); margin-bottom: 1.4rem;
+  animation: fadeUp 0.8s var(--r) 0.05s both;
+}
+.hero h1 em { font-style: italic; color: var(--teal); }
+.hero h1 .block { display: block; }
+
+.hero-desc {
+  font-size: 1.05rem; color: var(--mid); font-weight: 400;
+  line-height: 1.75; max-width: 460px; margin-bottom: 2.2rem;
+  animation: fadeUp 0.8s var(--r) 0.12s both;
+}
+
+.hero-ctas {
+  display: flex; gap: 1rem; flex-wrap: wrap;
+  animation: fadeUp 0.8s var(--r) 0.18s both;
+}
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 13px 28px; border-radius: 8px; font-family: var(--font-b);
+  font-size: 14px; font-weight: 700; transition: all 0.25s var(--r);
+  letter-spacing: 0.1px; border: none; cursor: pointer;
+}
+.btn-fill { background: var(--teal); color: white; }
+.btn-fill:hover { background: var(--teal-d); transform: translateY(-2px); box-shadow: 0 10px 32px rgba(10,122,106,0.25); }
+.btn-outline { border: 1.5px solid var(--line); color: var(--ink2); background: white; }
+.btn-outline:hover { border-color: var(--teal); color: var(--teal); transform: translateY(-2px); }
+.btn-arrow { font-size: 17px; line-height: 1; }
+
+.hero-trust {
+  margin-top: 2.4rem; display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap;
+  animation: fadeUp 0.8s var(--r) 0.25s both;
+}
+.trust-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); }
+.trust-item::before { content: '✓'; color: var(--teal); font-weight: 700; font-size: 13px; }
+.trust-sep { width: 1px; height: 14px; background: var(--line); }
+
+/* Hero visual panel */
+.hero-visual {
+  position: relative;
+  animation: fadeUp 0.9s var(--r) 0.15s both;
+}
+.hero-card-main {
+  background: white; border-radius: 20px;
+  border: 1px solid var(--line);
+  box-shadow: 0 20px 60px rgba(10,122,106,0.1);
+  padding: 2rem; overflow: hidden;
+}
+.hc-header {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 1.5rem;
+  padding-bottom: 1.2rem; border-bottom: 1px solid var(--teal-xxl);
+}
+.hc-avatar {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--teal), var(--teal-l));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+}
+.hc-title { font-size: 14px; font-weight: 700; color: var(--ink); }
+.hc-sub { font-size: 11.5px; color: var(--muted); }
+.hc-status {
+  margin-left: auto; display: flex; align-items: center; gap: 5px;
+  font-size: 11px; color: var(--teal); font-weight: 600;
+}
+.hc-status::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--teal); animation: breathe 2s infinite; }
+
+.hc-stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
+.hc-stat { text-align: center; padding: 0.8rem; background: var(--bg2); border-radius: 10px; }
+.hc-stat .n { font-family: var(--font-d); font-size: 1.6rem; font-weight: 700; color: var(--teal); line-height: 1; }
+.hc-stat .l { font-size: 10px; color: var(--muted); margin-top: 3px; }
+
+.hc-chat { display: flex; flex-direction: column; gap: 0.7rem; }
+.msg { padding: 0.7rem 0.9rem; border-radius: 12px; font-size: 12.5px; max-width: 85%; }
+.msg-in { background: var(--teal-xl); color: var(--ink2); border-bottom-left-radius: 3px; }
+.msg-out { background: var(--teal); color: white; align-self: flex-end; border-bottom-right-radius: 3px; }
+.msg-time { font-size: 10px; opacity: 0.6; margin-top: 3px; }
+
+.floating-badge {
+  position: absolute; background: white; border-radius: 12px;
+  border: 1px solid var(--line);
+  box-shadow: 0 8px 24px rgba(10,122,106,0.12);
+  padding: 0.8rem 1.1rem; font-size: 12px; font-weight: 600;
+  display: flex; align-items: center; gap: 8px;
+  animation: float 4s ease-in-out infinite;
+}
+.fb1 { top: -20px; right: -20px; color: var(--teal); }
+.fb2 { bottom: -16px; left: -16px; color: var(--coral); }
+.fb-icon { font-size: 18px; }
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+
+/* ===== STATS BAR ===== */
+.stats-section {
+  background: var(--teal); padding: 3.5rem 2rem;
+}
+.stats-grid {
+  max-width: 1120px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(4,1fr);
+  gap: 1px; border: 1px solid rgba(255,255,255,0.15); border-radius: 16px;
+  overflow: hidden;
+}
+.stat-box {
+  padding: 2rem 1.5rem; text-align: center;
+  background: rgba(255,255,255,0.05);
+  border-right: 1px solid rgba(255,255,255,0.1);
+  transition: background 0.3s;
+}
+.stat-box:last-child { border-right: none; }
+.stat-box:hover { background: rgba(255,255,255,0.1); }
+.stat-box .n {
+  font-family: var(--font-d); font-size: 2.8rem; font-weight: 700;
+  color: white; line-height: 1; margin-bottom: 0.35rem;
+}
+.stat-box .l { font-size: 12px; color: rgba(255,255,255,0.65); font-weight: 500; letter-spacing: 0.3px; }
+
+/* ===== SECTION COMMONS ===== */
+.section { padding: 6rem 2rem; }
+.section-alt { background: var(--bg2); }
+.section-dark { background: var(--ink); }
+.sh { /* section header */
+  margin-bottom: 3.5rem;
+}
+.sh-label {
+  font-size: 11px; font-weight: 700; color: var(--teal);
+  letter-spacing: 2.5px; text-transform: uppercase;
+  display: flex; align-items: center; gap: 8px; margin-bottom: 0.75rem;
+}
+.sh-label::before { content: ''; width: 18px; height: 2px; background: var(--teal); }
+.sh h2 {
+  font-family: var(--font-d); font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 700; line-height: 1.12; letter-spacing: -1px; color: var(--ink);
+}
+.sh h2 em { font-style: italic; color: var(--teal); }
+.section-dark .sh h2 { color: white; }
+.sh p {
+  font-size: 1rem; color: var(--mid); font-weight: 400;
+  max-width: 520px; margin-top: 0.8rem; line-height: 1.75;
+}
+.section-dark .sh p { color: rgba(255,255,255,0.55); }
+
+/* ===== SERVICES ===== */
+.services-grid {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem;
+}
+.sv-card {
+  padding: 2.2rem; border-radius: 18px;
+  border: 1px solid var(--line); background: white;
+  transition: box-shadow 0.3s, transform 0.3s, border-color 0.3s;
+  position: relative; overflow: hidden;
+}
+.sv-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--teal); transform: scaleX(0); transform-origin: left;
+  transition: transform 0.4s var(--r);
+}
+.sv-card:hover {
+  box-shadow: 0 16px 48px rgba(10,122,106,0.1);
+  transform: translateY(-4px); border-color: rgba(10,122,106,0.2);
+}
+.sv-card:hover::before { transform: scaleX(1); }
+.sv-icon {
+  width: 52px; height: 52px; border-radius: 14px;
+  background: var(--teal-xl); display: flex; align-items: center; justify-content: center;
+  font-size: 24px; margin-bottom: 1.3rem;
+  transition: transform 0.3s var(--r);
+}
+.sv-card:hover .sv-icon { transform: scale(1.1) rotate(-4deg); }
+.sv-card h3 {
+  font-family: var(--font-d); font-size: 1.3rem; font-weight: 600;
+  color: var(--ink); margin-bottom: 0.6rem; letter-spacing: -0.3px;
+}
+.sv-card p { font-size: 13.5px; color: var(--mid); line-height: 1.65; }
+.sv-link {
+  display: inline-flex; align-items: center; gap: 4px;
+  margin-top: 1.2rem; font-size: 12.5px; font-weight: 700;
+  color: var(--teal); letter-spacing: 0.3px;
+  transition: gap 0.2s;
+}
+.sv-link:hover { gap: 8px; }
+
+/* ===== HOW IT WORKS ===== */
+.how-grid {
+  display: grid; grid-template-columns: repeat(4,1fr); gap: 0;
+  border-radius: 18px; border: 1px solid var(--line); overflow: hidden;
+}
+.how-step {
+  padding: 2.2rem 1.8rem; background: white; position: relative;
+  border-right: 1px solid var(--line); transition: background 0.3s;
+}
+.how-step:last-child { border-right: none; }
+.how-step:hover { background: var(--teal-xxl); }
+.how-num {
+  font-family: var(--font-d); font-size: 3.5rem; font-weight: 700;
+  color: var(--teal-xl); line-height: 1; margin-bottom: 1rem;
+  transition: color 0.3s;
+}
+.how-step:hover .how-num { color: rgba(10,122,106,0.2); }
+.how-step h3 {
+  font-family: var(--font-d); font-size: 1.15rem; font-weight: 600;
+  color: var(--ink); margin-bottom: 0.5rem;
+}
+.how-step p { font-size: 13px; color: var(--mid); line-height: 1.6; }
+.how-arrow {
+  position: absolute; right: -12px; top: 50%; transform: translateY(-50%);
+  width: 24px; height: 24px; border-radius: 50%;
+  background: white; border: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; color: var(--teal); z-index: 1;
+}
+.how-step:last-child .how-arrow { display: none; }
+
+/* ===== WHY US ===== */
+.why-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+.why-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
+.why-item {
+  display: flex; gap: 1.2rem; padding: 1.4rem 0;
+  border-bottom: 1px solid var(--line);
+  transition: padding-left 0.3s var(--r);
+}
+.why-item:first-child { border-top: 1px solid var(--line); }
+.why-item:hover { padding-left: 0.5rem; }
+.why-icon {
+  width: 40px; height: 40px; border-radius: 10px;
+  background: var(--teal-xl); flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; font-size: 18px;
+}
+.why-item h4 { font-size: 14.5px; font-weight: 700; color: var(--ink); margin-bottom: 3px; }
+.why-item p { font-size: 13px; color: var(--mid); line-height: 1.55; }
+
+.why-visual {
+  background: var(--teal); border-radius: 24px; padding: 3rem;
+  color: white; position: relative; overflow: hidden;
+}
+.why-visual::before {
+  content: ''; position: absolute; top: -80px; right: -80px;
+  width: 250px; height: 250px; border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+}
+.why-visual::after {
+  content: ''; position: absolute; bottom: -60px; left: -40px;
+  width: 180px; height: 180px; border-radius: 50%;
+  background: rgba(255,255,255,0.04);
+}
+.wv-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; opacity: 0.7; margin-bottom: 0.5rem; }
+.wv-headline {
+  font-family: var(--font-d); font-size: 2.2rem; font-weight: 700;
+  line-height: 1.15; margin-bottom: 2rem;
+}
+.wv-items { display: flex; flex-direction: column; gap: 1rem; position: relative; z-index: 1; }
+.wv-row {
+  display: flex; align-items: center; gap: 1rem;
+  background: rgba(255,255,255,0.1); border-radius: 12px; padding: 1rem 1.2rem;
+}
+.wv-row .num {
+  font-family: var(--font-d); font-size: 2rem; font-weight: 700;
+  color: rgba(255,255,255,0.9); min-width: 70px;
+}
+.wv-row .txt .t { font-size: 13px; font-weight: 700; color: white; }
+.wv-row .txt .s { font-size: 11px; color: rgba(255,255,255,0.6); }
+
+/* ===== TESTIMONIALS ===== */
+.test-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+.test-card {
+  padding: 2rem; border-radius: 16px;
+  background: white; border: 1px solid var(--line);
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+.test-card:hover { box-shadow: 0 12px 40px rgba(10,122,106,0.09); transform: translateY(-3px); }
+.test-stars { color: var(--gold); font-size: 14px; letter-spacing: 2px; margin-bottom: 1rem; }
+.test-text {
+  font-family: var(--font-d); font-size: 1.05rem; font-style: italic;
+  color: var(--ink2); line-height: 1.65; margin-bottom: 1.4rem;
+}
+.test-author { display: flex; align-items: center; gap: 0.75rem; }
+.test-av {
+  width: 38px; height: 38px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 700; flex-shrink: 0;
+}
+.test-av.a1 { background: var(--teal-xl); color: var(--teal); }
+.test-av.a2 { background: #FDF1EE; color: var(--coral); }
+.test-av.a3 { background: #FEF9EC; color: var(--gold); }
+.test-name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+.test-role { font-size: 11.5px; color: var(--muted); }
+
+/* ===== PLANS ===== */
+.plans-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+.plan-card {
+  padding: 2.4rem; border-radius: 18px; border: 1.5px solid var(--line);
+  background: white; transition: all 0.3s var(--r); position: relative; overflow: hidden;
+}
+.plan-card.featured {
+  border-color: var(--teal); background: var(--teal);
+  color: white; transform: scale(1.03);
+  box-shadow: 0 20px 60px rgba(10,122,106,0.25);
+}
+.plan-card:not(.featured):hover { border-color: rgba(10,122,106,0.3); box-shadow: 0 12px 36px rgba(10,122,106,0.09); transform: translateY(-3px); }
+.plan-badge {
+  display: inline-block; background: rgba(255,255,255,0.2); color: white;
+  font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 20px; margin-bottom: 1.2rem;
+}
+.plan-name {
+  font-family: var(--font-d); font-size: 1.5rem; font-weight: 700; margin-bottom: 0.3rem;
+}
+.plan-desc { font-size: 13px; opacity: 0.7; margin-bottom: 1.5rem; }
+.plan-price {
+  margin-bottom: 1.6rem; padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+.plan-card:not(.featured) .plan-price { border-color: var(--line); }
+.plan-price .amt {
+  font-family: var(--font-d); font-size: 2.8rem; font-weight: 700; line-height: 1;
+  color: var(--teal);
+}
+.plan-card.featured .plan-price .amt { color: white; }
+.plan-price .per { font-size: 13px; opacity: 0.6; }
+.plan-features { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; margin-bottom: 2rem; }
+.plan-features li { font-size: 13.5px; display: flex; align-items: flex-start; gap: 8px; }
+.plan-features li::before { content: '✓'; color: var(--teal); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+.plan-card.featured .plan-features li::before { color: rgba(255,255,255,0.8); }
+.plan-card.featured .plan-features li { color: rgba(255,255,255,0.85); }
+.plan-btn {
+  display: block; width: 100%; text-align: center; padding: 12px;
+  border-radius: 10px; font-size: 14px; font-weight: 700;
+  transition: all 0.25s var(--r);
+}
+.plan-btn.light { background: var(--teal-xl); color: var(--teal); }
+.plan-btn.light:hover { background: rgba(10,122,106,0.15); }
+.plan-btn.dark { background: white; color: var(--teal); }
+.plan-btn.dark:hover { background: rgba(255,255,255,0.88); transform: translateY(-1px); }
+
+/* ===== CTA ===== */
+.cta-section {
+  background: var(--ink); padding: 8rem 2rem; text-align: center; position: relative; overflow: hidden;
+}
+.cta-section::before {
+  content: ''; position: absolute;
+  width: 600px; height: 600px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(10,122,106,0.15) 0%, transparent 70%);
+  top: 50%; left: 50%; transform: translate(-50%,-50%);
+  pointer-events: none;
+}
+.cta-inner { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; }
+.cta-inner h2 {
+  font-family: var(--font-d); font-size: clamp(2.2rem, 5vw, 4rem);
+  font-weight: 700; line-height: 1.1; letter-spacing: -1px; color: white; margin-bottom: 1rem;
+}
+.cta-inner h2 em { color: var(--teal-l); font-style: italic; }
+.cta-inner p { font-size: 1rem; color: rgba(255,255,255,0.5); margin-bottom: 2.5rem; font-weight: 300; }
+.cta-pills {
+  display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; margin-bottom: 2.5rem;
+}
+.cta-pill {
+  border: 1px solid rgba(10,122,106,0.35); background: rgba(10,122,106,0.08);
+  color: rgba(255,255,255,0.65); padding: 6px 15px; border-radius: 30px; font-size: 12px;
+}
+.cta-pill::before { content: '✓ '; color: var(--teal-l); }
+.cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.btn-white { background: white; color: var(--teal); }
+.btn-white:hover { background: var(--teal-xl); transform: translateY(-2px); box-shadow: 0 10px 32px rgba(255,255,255,0.1); }
+.btn-ghost-w { border: 1.5px solid rgba(255,255,255,0.2); color: white; background: transparent; }
+.btn-ghost-w:hover { border-color: var(--teal-l); color: var(--teal-l); transform: translateY(-2px); }
+
+/* ===== FOOTER ===== */
+footer {
+  background: #0A1710; border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 4rem 2rem 2rem;
+}
+.footer-top {
+  max-width: 1120px; margin: 0 auto;
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem;
+}
+.footer-brand .logo-name { font-size: 22px; }
+.footer-brand .logo-sub { margin-top: 3px; }
+.footer-brand p { font-size: 13.5px; color: rgba(255,255,255,0.35); margin-top: 1rem; line-height: 1.65; max-width: 280px; }
+.footer-col h4 {
+  font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  color: rgba(255,255,255,0.35); margin-bottom: 1.2rem;
+}
+.footer-col a {
+  display: block; font-size: 13.5px; color: rgba(255,255,255,0.55);
+  margin-bottom: 0.7rem; transition: color 0.2s;
+}
+.footer-col a:hover { color: var(--teal-l); }
+.footer-bottom {
+  max-width: 1120px; margin: 0 auto;
+  padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.06);
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+}
+.footer-bottom p { font-size: 12px; color: rgba(255,255,255,0.25); }
+.footer-socials { display: flex; gap: 1rem; }
+.footer-socials a {
+  width: 34px; height: 34px; border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.04);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; color: rgba(255,255,255,0.4); transition: all 0.2s;
+}
+.footer-socials a:hover { border-color: var(--teal); color: var(--teal); background: rgba(10,122,106,0.1); }
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 960px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 3rem; text-align: center; }
+  .hero-desc { margin-left: auto; margin-right: auto; }
+  .hero-ctas { justify-content: center; }
+  .hero-trust { justify-content: center; }
+  .hero h1 .block { display: inline; }
+  .hero-badge { display: inline-flex; }
+  .services-grid { grid-template-columns: 1fr 1fr; }
+  .how-grid { grid-template-columns: 1fr 1fr; }
+  .how-step { border-right: none; border-bottom: 1px solid var(--line); }
+  .how-step:nth-child(odd) { border-right: 1px solid var(--line); }
+  .how-step:nth-last-child(-n+2) { border-bottom: none; }
+  .why-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+  .test-grid { grid-template-columns: 1fr; }
+  .plans-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+  .plan-card.featured { transform: none; }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+}
+@media (max-width: 600px) {
+  .section { padding: 4rem 1.25rem; }
+  .stats-section { padding: 3rem 1.25rem; }
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+  .services-grid, .how-grid { grid-template-columns: 1fr; }
+  .how-step { border-right: none !important; }
+  .footer-top { grid-template-columns: 1fr; }
+  .hero-visual { display: none; }
+  .hero { min-height: auto; }
+  .hero h1 .block { display: block; }
+  .cta-btns { flex-direction: column; align-items: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== NAVIGATION ===================== -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <!-- SVG LOGO MARK -->
+      <svg class="logo-mark" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="38" height="38" rx="10" fill="#0A7A6A"/>
+        <path d="M8 21 L13 21 L15 16 L18 25 L21 13 L24 21 L26 19 L30 19" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="29" cy="11" r="4" fill="#14A68F"/>
+        <circle cx="29" cy="11" r="2.2" fill="white"/>
+      </svg>
+      <div class="logo-text">
+        <span class="logo-name">AvivaVirtual</span>
+        <span class="logo-sub">Virtual Care &amp; Tech Support</span>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#how">How It Works</a>
+      <a href="#plans">Plans</a>
+      <a href="#about">Why Us</a>
+      <a href="#contact" class="nav-btn">Get Started</a>
+    </div>
+    <button class="hamburger" id="ham" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<div class="mob-menu" id="mob-menu">
+  <a href="#services" onclick="closeMenu()">Services</a>
+  <a href="#how" onclick="closeMenu()">How It Works</a>
+  <a href="#plans" onclick="closeMenu()">Plans</a>
+  <a href="#about" onclick="closeMenu()">Why Us</a>
+  <a href="#contact" onclick="closeMenu()">Get Started Free</a>
+</div>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="hero-orb orb1"></div>
+    <div class="hero-orb orb2"></div>
+  </div>
+  <div class="hero-inner container">
+    <!-- Left: Copy -->
+    <div>
+      <div class="hero-badge">
+        <div class="badge-dot"></div>
+        Available Now — Canada-Wide
+      </div>
+      <h1>
+        Care That Comes <span class="block"><em>To You,</em></span>
+        <span class="block">Always On.</span>
+      </h1>
+      <p class="hero-desc">Professional virtual care and expert tech support — delivered remotely, resolved fast. Real humans, real help, wherever you are in Canada.</p>
+      <div class="hero-ctas">
+        <a href="#contact" class="btn btn-fill">Start Free Consultation <span class="btn-arrow">→</span></a>
+        <a href="#services" class="btn btn-outline">Explore Services</a>
+      </div>
+      <div class="hero-trust">
+        <span class="trust-item">No wait times</span>
+        <span class="trust-sep"></span>
+        <span class="trust-item">Canada-wide coverage</span>
+        <span class="trust-sep"></span>
+        <span class="trust-item">Bilingual EN/FR</span>
+        <span class="trust-sep"></span>
+        <span class="trust-item">Privacy compliant</span>
+      </div>
+    </div>
+    <!-- Right: Visual -->
+    <div class="hero-visual">
+      <div class="hero-card-main">
+        <div class="hc-header">
+          <div class="hc-avatar">🩺</div>
+          <div>
+            <div class="hc-title">AvivaVirtual Session</div>
+            <div class="hc-sub">Virtual Care & Tech Support</div>
+          </div>
+          <div class="hc-status">Live</div>
+        </div>
+        <div class="hc-stats">
+          <div class="hc-stat"><div class="n">&lt;2min</div><div class="l">Avg Response</div></div>
+          <div class="hc-stat"><div class="n">97%</div><div class="l">Resolved</div></div>
+          <div class="hc-stat"><div class="n">24/7</div><div class="l">Available</div></div>
+        </div>
+        <div class="hc-chat">
+          <div class="msg msg-in">Hi, my laptop keeps freezing — can you help? <div class="msg-time">2:41 PM</div></div>
+          <div class="msg msg-out">Absolutely! I can see your session now. Let's fix this together. <div class="msg-time">2:41 PM</div></div>
+          <div class="msg msg-in">Thank you, that was so fast! <div class="msg-time">2:44 PM</div></div>
+        </div>
+      </div>
+      <div class="floating-badge fb1">
+        <span class="fb-icon">⭐</span> 4.9 / 5 Rating
+      </div>
+      <div class="floating-badge fb2">
+        <span class="fb-icon">🔒</span> PIPEDA Secure
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== STATS ===================== -->
+<div class="stats-section">
+  <div class="stats-grid">
+    <div class="stat-box reveal"><div class="n">50K+</div><div class="l">Sessions Completed</div></div>
+    <div class="stat-box reveal r1"><div class="n">97%</div><div class="l">Issue Resolution Rate</div></div>
+    <div class="stat-box reveal r2"><div class="n">&lt;2min</div><div class="l">Average Response Time</div></div>
+    <div class="stat-box reveal r3"><div class="n">24/7</div><div class="l">Always Available</div></div>
+  </div>
+</div>
+
+<!-- ===================== SERVICES ===================== -->
+<section class="section" id="services">
+  <div class="container">
+    <div class="sh reveal">
+      <div class="sh-label">What We Offer</div>
+      <h2>Virtual Care &amp; Tech Support<br><em>Designed Around You</em></h2>
+      <p>From health guidance to device troubleshooting — expert help delivered remotely, resolved in minutes, not days.</p>
+    </div>
+    <div class="services-grid">
+      <div class="sv-card reveal">
+        <div class="sv-icon">🩺</div>
+        <h3>Virtual Health Care</h3>
+        <p>Connect with registered health professionals for triage, follow-ups, medication guidance, and wellness check-ins — all from home.</p>
+        <span class="sv-link">Learn more →</span>
+      </div>
+      <div class="sv-card reveal r1">
+        <div class="sv-icon">💻</div>
+        <h3>Remote Tech Support</h3>
+        <p>From slow computers and software glitches to network outages and device setup — our certified technicians fix it fast, remotely.</p>
+        <span class="sv-link">Learn more →</span>
+      </div>
+      <div class="sv-card reveal r2">
+        <div class="sv-icon">🤖</div>
+        <h3>AI-Assisted Triage</h3>
+        <p>Smart intake automatically understands your issue and routes you to the right specialist — eliminating hold times entirely.</p>
+        <span class="sv-link">Learn more →</span>
+      </div>
+      <div class="sv-card reveal">
+        <div class="sv-icon">🔒</div>
+        <h3>Secure & Private</h3>
+        <p>PIPEDA-compliant sessions. Your health data and device information stay private and encrypted — always.</p>
+        <span class="sv-link">Learn more →</span>
+      </div>
+      <div class="sv-card reveal r1">
+        <div class="sv-icon">🌐</div>
+        <h3>Bilingual Support</h3>
+        <p>Full English and French support available. AI language detection routes you to the right agent automatically.</p>
+        <span class="sv-link">Learn more →</span>
+      </div>
+      <div class="sv-card reveal r2">
+        <div class="sv-icon">📊</div>
+        <h3>Business Plans</h3>
+        <p>Dedicated support teams for small businesses, clinics, and enterprises. Custom SLAs, priority queues, and reporting included.</p>
+        <span class="sv-link">Learn more →</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== HOW IT WORKS ===================== -->
+<section class="section section-alt" id="how">
+  <div class="container">
+    <div class="sh reveal">
+      <div class="sh-label">How It Works</div>
+      <h2>Help in <em>Four Simple Steps</em></h2>
+      <p>From first contact to full resolution — we make getting help as easy as possible.</p>
+    </div>
+    <div class="how-grid reveal">
+      <div class="how-step">
+        <div class="how-num">01</div>
+        <h3>Reach Out</h3>
+        <p>Contact us via chat, phone, or our app — anytime, day or night. No appointment needed.</p>
+        <div class="how-arrow">›</div>
+      </div>
+      <div class="how-step">
+        <div class="how-num">02</div>
+        <h3>AI Triage</h3>
+        <p>Our AI assistant assesses your need instantly and routes you to the right specialist in seconds.</p>
+        <div class="how-arrow">›</div>
+      </div>
+      <div class="how-step">
+        <div class="how-num">03</div>
+        <h3>Expert Session</h3>
+        <p>Connect live with a care provider or tech specialist via video, chat, or remote desktop access.</p>
+        <div class="how-arrow">›</div>
+      </div>
+      <div class="how-step">
+        <div class="how-num">04</div>
+        <h3>Resolved & Followed Up</h3>
+        <p>97% of issues resolved in the first session. We follow up to make sure everything stays fixed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== WHY US ===================== -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="why-layout">
+      <div>
+        <div class="sh reveal">
+          <div class="sh-label">Why AvivaVirtual</div>
+          <h2>Built for Canadians.<br><em>Trusted by Thousands.</em></h2>
+          <p>We combine compassionate care with cutting-edge technology to deliver support that feels human — even when it's remote.</p>
+        </div>
+        <ul class="why-list">
+          <li class="why-item reveal">
+            <div class="why-icon">⚡</div>
+            <div>
+              <h4>Response in Under 2 Minutes</h4>
+              <p>No hold music. No waiting rooms. Our team responds in real time, around the clock.</p>
+            </div>
+          </li>
+          <li class="why-item reveal r1">
+            <div class="why-icon">🧠</div>
+            <div>
+              <h4>AI + Human Expertise</h4>
+              <p>Smart routing ensures you always reach the right expert. AI handles triage; humans handle care.</p>
+            </div>
+          </li>
+          <li class="why-item reveal r2">
+            <div class="why-icon">🇨🇦</div>
+            <div>
+              <h4>Proudly Canadian</h4>
+              <p>PIPEDA compliant, bilingual, and staffed by Canadian-trained professionals who understand your context.</p>
+            </div>
+          </li>
+          <li class="why-item reveal r3">
+            <div class="why-icon">📈</div>
+            <div>
+              <h4>Flexible for Any Scale</h4>
+              <p>Individual plans to enterprise contracts. We scale with you — from one user to 500 seats.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="why-visual reveal">
+        <div class="wv-label">By the Numbers</div>
+        <div class="wv-headline">Performance You Can Count On</div>
+        <div class="wv-items">
+          <div class="wv-row">
+            <div class="num">97%</div>
+            <div class="txt"><div class="t">First-Session Resolution</div><div class="s">Issues solved on first contact</div></div>
+          </div>
+          <div class="wv-row">
+            <div class="num">&lt;2m</div>
+            <div class="txt"><div class="t">Average Response Time</div><div class="s">Measured across all channels</div></div>
+          </div>
+          <div class="wv-row">
+            <div class="num">4.9★</div>
+            <div class="txt"><div class="t">Customer Satisfaction</div><div class="s">Based on 12,000+ reviews</div></div>
+          </div>
+          <div class="wv-row">
+            <div class="num">24/7</div>
+            <div class="txt"><div class="t">Always Available</div><div class="s">No blackout periods, ever</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TESTIMONIALS ===================== -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="sh reveal" style="text-align:center;max-width:500px;margin:0 auto 3.5rem">
+      <div class="sh-label" style="justify-content:center">What Clients Say</div>
+      <h2>Real People.<br><em>Real Results.</em></h2>
+    </div>
+    <div class="test-grid">
+      <div class="test-card reveal">
+        <div class="test-stars">★★★★★</div>
+        <p class="test-text">"I was able to get my blood pressure checked and my questions answered within minutes. I didn't have to leave my house or wait a week for an appointment."</p>
+        <div class="test-author">
+          <div class="test-av a1">MR</div>
+          <div><div class="test-name">Marie R.</div><div class="test-role">Virtual Care Client, Montréal</div></div>
+        </div>
+      </div>
+      <div class="test-card reveal r1">
+        <div class="test-stars">★★★★★</div>
+        <p class="test-text">"Our whole office IT was down on a Monday morning. AvivaVirtual had us back online in under an hour. Absolutely saved our day."</p>
+        <div class="test-author">
+          <div class="test-av a2">JS</div>
+          <div><div class="test-name">James S.</div><div class="test-role">Business Owner, Toronto</div></div>
+        </div>
+      </div>
+      <div class="test-card reveal r2">
+        <div class="test-stars">★★★★★</div>
+        <p class="test-text">"Being bilingual was the deciding factor for me. I was helped in French without any friction — rare and really appreciated."</p>
+        <div class="test-author">
+          <div class="test-av a3">PL</div>
+          <div><div class="test-name">Pierre L.</div><div class="test-role">Tech Support Client, Québec City</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PLANS ===================== -->
+<section class="section" id="plans">
+  <div class="container">
+    <div class="sh reveal" style="text-align:center;max-width:520px;margin:0 auto 3.5rem">
+      <div class="sh-label" style="justify-content:center">Simple Pricing</div>
+      <h2>Plans for Every<br><em>Need &amp; Budget</em></h2>
+      <p>Transparent pricing, no hidden fees. Cancel anytime.</p>
+    </div>
+    <div class="plans-grid">
+      <div class="plan-card reveal">
+        <div class="plan-name">Personal</div>
+        <p class="plan-desc">For individuals needing occasional help</p>
+        <div class="plan-price">
+          <span class="amt">$29</span> <span class="per">/ month</span>
+        </div>
+        <ul class="plan-features">
+          <li>Up to 5 sessions/month</li>
+          <li>Virtual health triage</li>
+          <li>Remote tech support</li>
+          <li>Email &amp; chat access</li>
+          <li>48-hr follow-up guarantee</li>
+        </ul>
+        <a href="#contact" class="plan-btn light">Get Started</a>
+      </div>
+      <div class="plan-card featured reveal r1">
+        <div class="plan-badge">Most Popular</div>
+        <div class="plan-name">Professional</div>
+        <p class="plan-desc">For power users and small teams</p>
+        <div class="plan-price">
+          <span class="amt">$79</span> <span class="per">/ month</span>
+        </div>
+        <ul class="plan-features">
+          <li>Unlimited sessions</li>
+          <li>Priority queue — &lt;2 min response</li>
+          <li>Dedicated account specialist</li>
+          <li>Health + IT support bundled</li>
+          <li>Bilingual EN/FR guaranteed</li>
+          <li>Monthly usage reports</li>
+        </ul>
+        <a href="#contact" class="plan-btn dark">Get Started</a>
+      </div>
+      <div class="plan-card reveal r2">
+        <div class="plan-name">Enterprise</div>
+        <p class="plan-desc">For clinics, offices &amp; growing teams</p>
+        <div class="plan-price">
+          <span class="amt">Custom</span> <span class="per">pricing</span>
+        </div>
+        <ul class="plan-features">
+          <li>Unlimited seats</li>
+          <li>Custom SLAs &amp; reporting</li>
+          <li>Dedicated on-call team</li>
+          <li>White-label options</li>
+          <li>Compliance documentation</li>
+          <li>Onboarding &amp; training</li>
+        </ul>
+        <a href="#contact" class="plan-btn light">Contact Sales</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA ===================== -->
+<section class="cta-section" id="contact">
+  <div class="cta-inner">
+    <h2>Ready to Get <em>Help That Actually Works?</em></h2>
+    <p>Book a free 15-minute consultation. No commitment, no credit card. Just real support from real people.</p>
+    <div class="cta-pills">
+      <span class="cta-pill">Free Consultation</span>
+      <span class="cta-pill">No Commitment</span>
+      <span class="cta-pill">Response in &lt;2 Minutes</span>
+      <span class="cta-pill">Bilingual EN/FR</span>
+      <span class="cta-pill">PIPEDA Compliant</span>
+    </div>
+    <div class="cta-btns">
+      <a href="mailto:hello@avivavirtual.com" class="btn btn-white">📩 hello@avivavirtual.com</a>
+      <a href="tel:+16470000000" class="btn btn-ghost-w">📞 +1 (647) 000-0000</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="logo">
+        <svg class="logo-mark" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="38" height="38" rx="10" fill="#0A7A6A"/>
+          <path d="M8 21 L13 21 L15 16 L18 25 L21 13 L24 21 L26 19 L30 19" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="29" cy="11" r="4" fill="#14A68F"/>
+          <circle cx="29" cy="11" r="2.2" fill="white"/>
+        </svg>
+        <div class="logo-text">
+          <span class="logo-name">AvivaVirtual</span>
+          <span class="logo-sub" style="color:rgba(255,255,255,0.35)">Virtual Care &amp; Tech Support</span>
+        </div>
+      </a>
+      <p>Canada's trusted remote care and tech support partner — always available, always human.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a href="#services">Virtual Health Care</a>
+      <a href="#services">Remote Tech Support</a>
+      <a href="#services">AI-Assisted Triage</a>
+      <a href="#services">Business Plans</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#about">About Us</a>
+      <a href="#about">How It Works</a>
+      <a href="#plans">Pricing</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">PIPEDA Compliance</a>
+      <a href="#">Cookie Policy</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 AvivaVirtual Inc. All rights reserved. | avivavirtual.com</p>
+    <div class="footer-socials">
+      <a href="#" title="LinkedIn">in</a>
+      <a href="#" title="Twitter/X">𝕏</a>
+      <a href="#" title="Facebook">f</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ===================== SCRIPTS ===================== -->
+<script>
+// Nav scroll effect
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 30);
+});
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Mobile menu
+function toggleMenu() {
+  document.getElementById('mob-menu').classList.toggle('open');
+}
+function closeMenu() {
+  document.getElementById('mob-menu').classList.remove('open');
+}
+// Close on outside click
+document.addEventListener('click', (e) => {
+  const menu = document.getElementById('mob-menu');
+  const ham = document.getElementById('ham');
+  if (!menu.contains(e.target) && !ham.contains(e.target)) {
+    menu.classList.remove('open');
+  }
+});
+
+// Smooth anchor scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', (e) => {
+    const id = a.getAttribute('href');
+    if (id === '#') return;
+    const el = document.querySelector(id);
+    if (el) {
+      e.preventDefault();
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+</body>
+</html>

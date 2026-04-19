@@ -1,0 +1,13 @@
+# AvivaVirtual — robots.txt
+# https://avivavirtual.com
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://avivavirtual.com/sitemap.xml
+
+# Block any private/admin paths (future-proofing)
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*.json$

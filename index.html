@@ -200,7 +200,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link rel="dns-prefetch" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 
 <style>
 /* =========================================
@@ -226,7 +226,7 @@
   --bg:       #FFFFFF;
   --bg2:      #F7FBFA;
   --bg3:      #EEF7F5;
-  --font-d:   'Cormorant Garant', Georgia, serif;
+  --font-d:   'Cormorant Garamond', Georgia, serif;
   --font-b:   'Nunito', sans-serif;
   --r:        cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -247,6 +247,20 @@ body {
 
 a { text-decoration: none; color: inherit; }
 img { max-width: 100%; display: block; }
+
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 1rem;
+  z-index: 999;
+  background: var(--teal);
+  color: #fff;
+  padding: 0.5rem 0.9rem;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+}
+.skip-link:focus { top: 12px; }
 
 /* ===== UTILITIES ===== */
 .container { max-width: 1120px; margin: 0 auto; padding: 0 2rem; }
@@ -714,6 +728,47 @@ nav.scrolled {
 .plan-btn.dark { background: white; color: var(--teal); }
 .plan-btn.dark:hover { background: rgba(255,255,255,0.88); transform: translateY(-1px); }
 
+/* ===== FAQ ===== */
+.faq-wrap {
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+.faq-item {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: white;
+  overflow: hidden;
+}
+.faq-item summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 1rem 1.2rem;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+  content: '+';
+  font-size: 1.1rem;
+  color: var(--teal);
+  line-height: 1;
+}
+.faq-item[open] summary::after { content: '−'; }
+.faq-item p {
+  padding: 0 1.2rem 1rem;
+  font-size: 13.5px;
+  color: var(--mid);
+  line-height: 1.7;
+}
+
 /* ===== CTA ===== */
 .cta-section {
   background: var(--ink); padding: 8rem 2rem; text-align: center; position: relative; overflow: hidden;
@@ -825,6 +880,7 @@ footer {
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to content</a>
 
 <!-- ===================== NAVIGATION ===================== -->
 <nav id="nav" role="navigation" aria-label="Main navigation">
@@ -846,10 +902,11 @@ footer {
       <a href="#services">Services</a>
       <a href="#how">How It Works</a>
       <a href="#plans">Plans</a>
+      <a href="#faq">FAQ</a>
       <a href="#about">Why Us</a>
       <a href="#contact" class="nav-btn">Get Started</a>
     </div>
-    <button class="hamburger" id="ham" onclick="toggleMenu()" aria-label="Menu">
+    <button class="hamburger" id="ham" onclick="toggleMenu()" aria-label="Menu" aria-expanded="false" aria-controls="mob-menu">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -860,6 +917,7 @@ footer {
   <a href="#services" onclick="closeMenu()">Services</a>
   <a href="#how" onclick="closeMenu()">How It Works</a>
   <a href="#plans" onclick="closeMenu()">Plans</a>
+  <a href="#faq" onclick="closeMenu()">FAQ</a>
   <a href="#about" onclick="closeMenu()">Why Us</a>
   <a href="#contact" onclick="closeMenu()">Get Started Free</a>
 </div>
@@ -1188,6 +1246,35 @@ footer {
   </div>
 </section>
 
+<!-- ===================== FAQ ===================== -->
+<section class="section section-alt" id="faq" aria-label="Frequently asked questions">
+  <div class="container">
+    <div class="sh reveal" style="text-align:center;max-width:700px;margin:0 auto 2.5rem">
+      <div class="sh-label" style="justify-content:center">FAQ</div>
+      <h2>Questions We Hear <em>Every Day</em></h2>
+      <p>Quick answers about speed, security, and getting started with AvivaVirtual.</p>
+    </div>
+    <div class="faq-wrap">
+      <details class="faq-item reveal">
+        <summary>How quickly can someone help me?</summary>
+        <p>Most clients are connected to a specialist in under 2 minutes, including evenings and weekends.</p>
+      </details>
+      <details class="faq-item reveal r1">
+        <summary>Do you support both English and French?</summary>
+        <p>Yes. You can request support in English or French, and we route you to a bilingual team member.</p>
+      </details>
+      <details class="faq-item reveal r2">
+        <summary>Is AvivaVirtual secure and compliant?</summary>
+        <p>All sessions are encrypted and designed around PIPEDA compliance, with strict internal privacy controls.</p>
+      </details>
+      <details class="faq-item reveal r3">
+        <summary>Can businesses get custom onboarding?</summary>
+        <p>Absolutely. Business and enterprise plans include tailored onboarding, workflows, and reporting options.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
 <!-- ===================== CTA ===================== -->
 <section class="cta-section" id="contact">
   <div class="cta-inner">
@@ -1239,6 +1326,7 @@ footer {
       <a href="#about">About Us</a>
       <a href="#about">How It Works</a>
       <a href="#plans">Pricing</a>
+      <a href="#faq">FAQ</a>
       <a href="#contact">Contact</a>
     </div>
     <div class="footer-col">
@@ -1281,18 +1369,28 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
 // Mobile menu
 function toggleMenu() {
-  document.getElementById('mob-menu').classList.toggle('open');
+  const menu = document.getElementById('mob-menu');
+  const ham = document.getElementById('ham');
+  const isOpen = menu.classList.toggle('open');
+  ham.setAttribute('aria-expanded', String(isOpen));
 }
 function closeMenu() {
-  document.getElementById('mob-menu').classList.remove('open');
+  const menu = document.getElementById('mob-menu');
+  const ham = document.getElementById('ham');
+  menu.classList.remove('open');
+  ham.setAttribute('aria-expanded', 'false');
 }
 // Close on outside click
 document.addEventListener('click', (e) => {
   const menu = document.getElementById('mob-menu');
   const ham = document.getElementById('ham');
   if (!menu.contains(e.target) && !ham.contains(e.target)) {
-    menu.classList.remove('open');
+    closeMenu();
   }
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeMenu();
 });
 
 // Smooth anchor scroll

@@ -1417,23 +1417,53 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 });
 
 // Consultation form submit
-function handleConsultSubmit(e) {
+async function handleConsultSubmit(e) {
   e.preventDefault();
   const fname = document.getElementById('cf-fname').value.trim();
+  const lname = document.getElementById('cf-lname').value.trim();
   const email = document.getElementById('cf-email').value.trim();
+  const phone = document.getElementById('cf-phone').value.trim();
   const service = document.getElementById('cf-service').value;
+  const lang = document.querySelector('input[name="cf-lang"]:checked')?.value || '';
+  const message = document.getElementById('cf-message').value.trim();
+
   if (!fname || !email || !service) {
     alert('Please fill in your name, email, and select a service.');
     return;
   }
+
   const btn = document.getElementById('cf-btn-text');
   btn.textContent = 'Sending…';
-  setTimeout(() => {
-    document.querySelector('.consult-form-grid').style.display = 'none';
-    document.querySelector('.cf-submit').style.display = 'none';
-    document.querySelector('.cf-privacy').style.display = 'none';
-    document.getElementById('cf-success').classList.add('show');
-  }, 900);
+
+  try {
+    const res = await fetch('https://formspree.io/f/xwvarwpr', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        _subject: '📋 New Consultation Request — AvivaVirtual',
+        source: 'Consultation Form',
+        first_name: fname,
+        last_name: lname,
+        email,
+        phone,
+        service,
+        preferred_language: lang,
+        message
+      })
+    });
+    if (res.ok) {
+      document.querySelector('.consult-form-grid').style.display = 'none';
+      document.querySelector('.cf-submit').style.display = 'none';
+      document.querySelector('.cf-privacy').style.display = 'none';
+      document.getElementById('cf-success').classList.add('show');
+    } else {
+      btn.textContent = 'Book My Free Consultation →';
+      alert('Something went wrong. Please try again or email us at info@avivavirtual.com');
+    }
+  } catch (err) {
+    btn.textContent = 'Book My Free Consultation →';
+    alert('Network error. Please check your connection and try again.');
+  }
 }
 </script>
 
@@ -1865,6 +1895,21 @@ function setupInput(step) {
     inputEl.style.display = 'none';
     document.getElementById('chat-send-btn').style.display = 'none';
     updateProgress(CHAT_STEPS.length);
+
+    // Submit to Formspree
+    fetch('https://formspree.io/f/xwvarwpr', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        _subject: '📅 New 15-Min Session Booked — AvivaVirtual',
+        source: 'Chatbot',
+        name: chatData.name,
+        email: chatData.email,
+        phone: chatData.phone,
+        topic: chatData.topic,
+        scheduled_slot: chatData.slot
+      })
+    }).catch(() => {}); // silent fail — user already sees confirmation
     // show restart
     const btn = document.createElement('button');
     btn.className = 'chat-qr';

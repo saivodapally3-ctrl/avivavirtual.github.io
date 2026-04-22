@@ -241,6 +241,26 @@ body {
   overflow-x: hidden;
 }
 
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -80px;
+  background: var(--teal);
+  color: #fff;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  z-index: 999;
+  font-size: 0.9rem;
+  font-weight: 700;
+  transition: top 0.2s ease;
+}
+.skip-link:focus { top: 1rem; }
+
+:focus-visible {
+  outline: 3px solid rgba(10,122,106,0.42);
+  outline-offset: 3px;
+}
+
 ::-webkit-scrollbar { width: 3px; }
 ::-webkit-scrollbar-track { background: var(--teal-xxl); }
 ::-webkit-scrollbar-thumb { background: var(--teal); border-radius: 4px; }
@@ -714,6 +734,51 @@ nav.scrolled {
 .plan-btn.dark { background: white; color: var(--teal); }
 .plan-btn.dark:hover { background: rgba(255,255,255,0.88); transform: translateY(-1px); }
 
+/* ===== FAQ ===== */
+.faq-grid {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 1rem;
+}
+.faq-item {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  overflow: hidden;
+}
+.faq-q {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  padding: 1rem 1.1rem;
+  font-size: 0.95rem;
+  color: var(--ink);
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.faq-q::after {
+  content: '+';
+  color: var(--teal);
+  font-size: 1.2rem;
+  line-height: 1;
+}
+.faq-item.open .faq-q::after { content: '−'; }
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.25s var(--r);
+}
+.faq-a p {
+  padding: 0 1.1rem 1rem;
+  font-size: 0.88rem;
+  color: var(--mid);
+}
+
 /* ===== CTA ===== */
 .cta-section {
   background: var(--ink); padding: 8rem 2rem; text-align: center; position: relative; overflow: hidden;
@@ -809,6 +874,7 @@ footer {
   .stats-grid { grid-template-columns: 1fr 1fr; }
   .nav-links { display: none; }
   .hamburger { display: flex; }
+  .faq-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 600px) {
   .section { padding: 4rem 1.25rem; }
@@ -825,6 +891,7 @@ footer {
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
 
 <!-- ===================== NAVIGATION ===================== -->
 <nav id="nav" role="navigation" aria-label="Main navigation">
@@ -849,7 +916,7 @@ footer {
       <a href="#about">Why Us</a>
       <a href="#contact" class="nav-btn">Get Started</a>
     </div>
-    <button class="hamburger" id="ham" onclick="toggleMenu()" aria-label="Menu">
+    <button class="hamburger" id="ham" onclick="toggleMenu()" aria-label="Menu" aria-expanded="false" aria-controls="mob-menu">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -1188,6 +1255,35 @@ footer {
   </div>
 </section>
 
+<!-- ===================== FAQ ===================== -->
+<section class="section section-alt" aria-label="Frequently asked questions">
+  <div class="container">
+    <div class="sh reveal" style="text-align:center;max-width:560px;margin:0 auto 2.5rem">
+      <div class="sh-label" style="justify-content:center">FAQ</div>
+      <h2>Questions We Hear <em>Every Day</em></h2>
+      <p>Quick answers before you book your first consultation.</p>
+    </div>
+    <div class="faq-grid">
+      <article class="faq-item reveal">
+        <button class="faq-q" type="button">How quickly can I talk to someone?</button>
+        <div class="faq-a"><p>Most clients connect with a support specialist in under two minutes, 24/7.</p></div>
+      </article>
+      <article class="faq-item reveal r1">
+        <button class="faq-q" type="button">Do you support both French and English?</button>
+        <div class="faq-a"><p>Yes. We provide full bilingual coverage across all service channels.</p></div>
+      </article>
+      <article class="faq-item reveal r2">
+        <button class="faq-q" type="button">Can businesses get a dedicated support team?</button>
+        <div class="faq-a"><p>Absolutely. Professional and Enterprise plans include priority routing and team-level support options.</p></div>
+      </article>
+      <article class="faq-item reveal">
+        <button class="faq-q" type="button">Is my information protected?</button>
+        <div class="faq-a"><p>All sessions are encrypted and handled under PIPEDA-aligned privacy and security practices.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
 <!-- ===================== CTA ===================== -->
 <section class="cta-section" id="contact">
   <div class="cta-inner">
@@ -1281,10 +1377,14 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
 // Mobile menu
 function toggleMenu() {
-  document.getElementById('mob-menu').classList.toggle('open');
+  const menu = document.getElementById('mob-menu');
+  const ham = document.getElementById('ham');
+  const isOpen = menu.classList.toggle('open');
+  ham.setAttribute('aria-expanded', String(isOpen));
 }
 function closeMenu() {
   document.getElementById('mob-menu').classList.remove('open');
+  document.getElementById('ham').setAttribute('aria-expanded', 'false');
 }
 // Close on outside click
 document.addEventListener('click', (e) => {
@@ -1292,7 +1392,11 @@ document.addEventListener('click', (e) => {
   const ham = document.getElementById('ham');
   if (!menu.contains(e.target) && !ham.contains(e.target)) {
     menu.classList.remove('open');
+    ham.setAttribute('aria-expanded', 'false');
   }
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeMenu();
 });
 
 // Smooth anchor scroll
@@ -1305,6 +1409,16 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
       e.preventDefault();
       el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
+  });
+});
+
+// FAQ accordion
+document.querySelectorAll('.faq-item').forEach((item) => {
+  const button = item.querySelector('.faq-q');
+  const answer = item.querySelector('.faq-a');
+  button.addEventListener('click', () => {
+    const isOpen = item.classList.toggle('open');
+    answer.style.maxHeight = isOpen ? `${answer.scrollHeight}px` : '0';
   });
 });
 </script>

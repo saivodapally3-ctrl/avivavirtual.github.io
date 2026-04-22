@@ -822,6 +822,102 @@ footer {
   .hero h1 .block { display: block; }
   .cta-btns { flex-direction: column; align-items: center; }
 }
+
+/* ===== CONSULTATION FORM ===== */
+.consult-form-wrap {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 20px;
+  padding: 2.5rem;
+  text-align: left;
+  position: relative;
+  backdrop-filter: blur(10px);
+}
+.consult-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+.cf-full { grid-column: 1 / -1; }
+.cf-group { display: flex; flex-direction: column; gap: 0.4rem; }
+.cf-group label {
+  font-size: 12px; font-weight: 600;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.5px; text-transform: uppercase;
+}
+.cf-group input,
+.cf-group select,
+.cf-group textarea {
+  background: rgba(255,255,255,0.07);
+  border: 1.5px solid rgba(255,255,255,0.14);
+  border-radius: 10px;
+  padding: 11px 14px;
+  font-family: var(--font-b);
+  font-size: 14px;
+  color: white;
+  transition: border-color 0.2s, background 0.2s;
+  outline: none;
+  width: 100%;
+}
+.cf-group input::placeholder,
+.cf-group textarea::placeholder { color: rgba(255,255,255,0.3); }
+.cf-group input:focus,
+.cf-group select:focus,
+.cf-group textarea:focus {
+  border-color: var(--teal-l);
+  background: rgba(255,255,255,0.1);
+}
+.cf-group select option { background: #1a3330; color: white; }
+.cf-group textarea { resize: vertical; min-height: 100px; }
+.cf-radio-group {
+  display: flex; gap: 1.2rem; flex-wrap: wrap; margin-top: 4px;
+}
+.cf-radio {
+  display: flex; align-items: center; gap: 7px;
+  cursor: pointer; font-size: 14px; color: rgba(255,255,255,0.75);
+}
+.cf-radio input[type="radio"] { accent-color: var(--teal-l); width: 16px; height: 16px; cursor: pointer; }
+.cf-submit {
+  width: 100%; padding: 14px;
+  background: var(--teal-l);
+  color: white; font-family: var(--font-b);
+  font-size: 15px; font-weight: 700;
+  border: none; border-radius: 12px;
+  cursor: pointer; letter-spacing: 0.2px;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+.cf-submit:hover {
+  background: var(--teal);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 36px rgba(20,166,143,0.3);
+}
+.cf-privacy {
+  text-align: center; font-size: 11.5px;
+  color: rgba(255,255,255,0.3);
+  margin-top: 1rem;
+}
+.cf-success {
+  display: none;
+  text-align: center;
+  padding: 2rem 1rem;
+}
+.cf-success.show { display: block; }
+.cf-success-icon {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--teal-l);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; color: white; margin: 0 auto 1rem;
+}
+.cf-success-title {
+  font-family: var(--font-d); font-size: 1.8rem;
+  font-weight: 700; color: white; margin-bottom: 0.5rem;
+}
+.cf-success p { color: rgba(255,255,255,0.55); font-size: 14px; }
+@media (max-width: 600px) {
+  .consult-form-grid { grid-template-columns: 1fr; }
+  .consult-form-wrap { padding: 1.5rem; }
+}
 </style>
 </head>
 <body>
@@ -830,12 +926,18 @@ footer {
 <nav id="nav" role="navigation" aria-label="Main navigation">
   <div class="nav-inner">
     <a href="#" class="logo">
-      <!-- SVG LOGO MARK -->
+      <!-- SVG LOGO MARK: A with headphones -->
       <svg class="logo-mark" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect width="38" height="38" rx="10" fill="#0A7A6A"/>
-        <path d="M8 21 L13 21 L15 16 L18 25 L21 13 L24 21 L26 19 L30 19" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-        <circle cx="29" cy="11" r="4" fill="#14A68F"/>
-        <circle cx="29" cy="11" r="2.2" fill="white"/>
+        <!-- Letter A -->
+        <path d="M13 28 L19 11 L25 28" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M15.2 22.5 L22.8 22.5" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+        <!-- Headphone arc -->
+        <path d="M11 17 Q11 9 19 9 Q27 9 27 17" stroke="#14A68F" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+        <!-- Left ear cup -->
+        <rect x="9" y="16" width="4" height="5.5" rx="2" fill="#14A68F"/>
+        <!-- Right ear cup -->
+        <rect x="25" y="16" width="4" height="5.5" rx="2" fill="#14A68F"/>
       </svg>
       <div class="logo-text">
         <span class="logo-name">AvivaVirtual</span>
@@ -845,7 +947,6 @@ footer {
     <div class="nav-links">
       <a href="#services">Services</a>
       <a href="#how">How It Works</a>
-      <a href="#plans">Plans</a>
       <a href="#about">Why Us</a>
       <a href="#contact" class="nav-btn">Get Started</a>
     </div>
@@ -859,7 +960,6 @@ footer {
 <div class="mob-menu" id="mob-menu">
   <a href="#services" onclick="closeMenu()">Services</a>
   <a href="#how" onclick="closeMenu()">How It Works</a>
-  <a href="#plans" onclick="closeMenu()">Plans</a>
   <a href="#about" onclick="closeMenu()">Why Us</a>
   <a href="#contact" onclick="closeMenu()">Get Started Free</a>
 </div>
@@ -1127,80 +1227,75 @@ footer {
   </div>
 </section>
 
-<!-- ===================== PLANS ===================== -->
-<section class="section" id="plans">
-  <div class="container">
-    <div class="sh reveal" style="text-align:center;max-width:520px;margin:0 auto 3.5rem">
-      <div class="sh-label" style="justify-content:center">Simple Pricing</div>
-      <h2>Plans for Every<br><em>Need &amp; Budget</em></h2>
-      <p>Transparent pricing, no hidden fees. Cancel anytime.</p>
-    </div>
-    <div class="plans-grid">
-      <div class="plan-card reveal">
-        <div class="plan-name">Personal</div>
-        <p class="plan-desc">For individuals needing occasional help</p>
-        <div class="plan-price">
-          <span class="amt">$29</span> <span class="per">/ month</span>
-        </div>
-        <ul class="plan-features">
-          <li>Up to 5 sessions/month</li>
-          <li>Virtual customer triage</li>
-          <li>Remote tech support</li>
-          <li>Email &amp; chat access</li>
-          <li>48-hr follow-up guarantee</li>
-        </ul>
-        <a href="#contact" class="plan-btn light">Get Started</a>
-      </div>
-      <div class="plan-card featured reveal r1">
-        <div class="plan-badge">Most Popular</div>
-        <div class="plan-name">Professional</div>
-        <p class="plan-desc">For power users and small teams</p>
-        <div class="plan-price">
-          <span class="amt">$79</span> <span class="per">/ month</span>
-        </div>
-        <ul class="plan-features">
-          <li>Unlimited sessions</li>
-          <li>Priority queue  &lt;2 min response</li>
-          <li>Dedicated account specialist</li>
-          <li>customer + IT support bundled</li>
-          <li>Bilingual EN/FR guaranteed</li>
-          <li>Monthly usage reports</li>
-        </ul>
-        <a href="#contact" class="plan-btn dark">Get Started</a>
-      </div>
-      <div class="plan-card reveal r2">
-        <div class="plan-name">Enterprise</div>
-        <p class="plan-desc">For clinics, offices &amp; growing teams</p>
-        <div class="plan-price">
-          <span class="amt">Custom</span> <span class="per">pricing</span>
-        </div>
-        <ul class="plan-features">
-          <li>Unlimited seats</li>
-          <li>Custom SLAs &amp; reporting</li>
-          <li>Dedicated on-call team</li>
-          <li>White-label options</li>
-          <li>Compliance documentation</li>
-          <li>Onboarding &amp; training</li>
-        </ul>
-        <a href="#contact" class="plan-btn light">Contact Sales</a>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ===================== CTA ===================== -->
+<!-- ===================== CONSULTATION FORM ===================== -->
 <section class="cta-section" id="contact">
-  <div class="cta-inner">
-    <h2>Ready to Get <em>Help That Actually Works?</em></h2>
-    <p>Book a free 15-minute consultation. No commitment, no credit card. Just real support from real people.</p>
-    <div class="cta-pills">
+  <div class="cta-inner" style="max-width:800px;">
+    <h2>Book a Free <em>15-Minute Consultation</em></h2>
+    <p>No commitment, no credit card. Just real support from real people. Fill in the form and we'll reach out within 2 minutes.</p>
+    <div class="cta-pills" style="margin-bottom:2.5rem;">
       <span class="cta-pill">Free Consultation</span>
       <span class="cta-pill">No Commitment</span>
       <span class="cta-pill">Response in &lt;2 Minutes</span>
       <span class="cta-pill">Bilingual EN/FR</span>
       <span class="cta-pill">PIPEDA Compliant</span>
     </div>
-    <div class="cta-btns">
+
+    <div class="consult-form-wrap">
+      <div class="consult-form-grid">
+        <div class="cf-group">
+          <label for="cf-fname">First Name</label>
+          <input type="text" id="cf-fname" placeholder="Marie" autocomplete="given-name"/>
+        </div>
+        <div class="cf-group">
+          <label for="cf-lname">Last Name</label>
+          <input type="text" id="cf-lname" placeholder="Tremblay" autocomplete="family-name"/>
+        </div>
+        <div class="cf-group">
+          <label for="cf-email">Email Address</label>
+          <input type="email" id="cf-email" placeholder="marie@example.com" autocomplete="email"/>
+        </div>
+        <div class="cf-group">
+          <label for="cf-phone">Phone Number</label>
+          <input type="tel" id="cf-phone" placeholder="+1 (514) 000-0000" autocomplete="tel"/>
+        </div>
+        <div class="cf-group cf-full">
+          <label for="cf-service">What do you need help with?</label>
+          <select id="cf-service">
+            <option value="" disabled selected>Select a service…</option>
+            <option value="customer-care">Virtual Customer Care</option>
+            <option value="tech-support">Remote Tech Support</option>
+            <option value="both">Both — Customer Care &amp; Tech Support</option>
+            <option value="enterprise">Enterprise / Business Plan</option>
+            <option value="other">Other / Not Sure Yet</option>
+          </select>
+        </div>
+        <div class="cf-group cf-full">
+          <label for="cf-lang">Preferred Language</label>
+          <div class="cf-radio-group">
+            <label class="cf-radio"><input type="radio" name="cf-lang" value="en" checked/><span>English</span></label>
+            <label class="cf-radio"><input type="radio" name="cf-lang" value="fr"/><span>Français</span></label>
+            <label class="cf-radio"><input type="radio" name="cf-lang" value="both"/><span>Either / Les deux</span></label>
+          </div>
+        </div>
+        <div class="cf-group cf-full">
+          <label for="cf-message">Tell us a bit more (optional)</label>
+          <textarea id="cf-message" rows="4" placeholder="Describe your situation or any questions you have…"></textarea>
+        </div>
+      </div>
+      <button class="cf-submit" onclick="handleConsultSubmit(event)">
+        <span id="cf-btn-text">Book My Free Consultation →</span>
+      </button>
+      <p class="cf-privacy">🔒 Your information is encrypted and PIPEDA compliant. We never share your data.</p>
+      <div class="cf-success" id="cf-success">
+        <div class="cf-success-icon">✓</div>
+        <div class="cf-success-title">You're booked in!</div>
+        <p>We'll reach out to the contact details you provided within 2 minutes. Check your inbox for a confirmation.</p>
+      </div>
+    </div>
+
+    <div class="cta-btns" style="margin-top:2.5rem;">
       <a href="mailto:info@avivavirtual.com" class="btn btn-white">📩 info@avivavirtual.com</a>
       <a href="tel:+14383423714" class="btn btn-ghost-w">📞 +1 (438) 342-3714</a>
     </div>
@@ -1216,9 +1311,11 @@ footer {
       <a href="#" class="logo">
         <svg class="logo-mark" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect width="38" height="38" rx="10" fill="#0A7A6A"/>
-          <path d="M8 21 L13 21 L15 16 L18 25 L21 13 L24 21 L26 19 L30 19" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-          <circle cx="29" cy="11" r="4" fill="#14A68F"/>
-          <circle cx="29" cy="11" r="2.2" fill="white"/>
+          <path d="M13 28 L19 11 L25 28" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <path d="M15.2 22.5 L22.8 22.5" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M11 17 Q11 9 19 9 Q27 9 27 17" stroke="#14A68F" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+          <rect x="9" y="16" width="4" height="5.5" rx="2" fill="#14A68F"/>
+          <rect x="25" y="16" width="4" height="5.5" rx="2" fill="#14A68F"/>
         </svg>
         <div class="logo-text">
           <span class="logo-name">AvivaVirtual</span>
@@ -1238,7 +1335,6 @@ footer {
       <h4>Company</h4>
       <a href="#about">About Us</a>
       <a href="#about">How It Works</a>
-      <a href="#plans">Pricing</a>
       <a href="#contact">Contact</a>
     </div>
     <div class="footer-col">
@@ -1261,6 +1357,18 @@ footer {
 
 <!-- ===================== SCRIPTS ===================== -->
 <script>
+// Consultation form submit
+function handleConsultSubmit(btn) {
+  btn.textContent = 'Sending…';
+  btn.style.opacity = '0.7';
+  btn.disabled = true;
+  setTimeout(() => {
+    document.getElementById('form-success').style.display = 'block';
+    btn.textContent = '✓ Submitted';
+    btn.style.background = '#0A7A6A';
+  }, 1200);
+}
+
 // Nav scroll effect
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
@@ -1306,6 +1414,554 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
       el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   });
+});
+
+// Consultation form submit
+function handleConsultSubmit(e) {
+  e.preventDefault();
+  const fname = document.getElementById('cf-fname').value.trim();
+  const email = document.getElementById('cf-email').value.trim();
+  const service = document.getElementById('cf-service').value;
+  if (!fname || !email || !service) {
+    alert('Please fill in your name, email, and select a service.');
+    return;
+  }
+  const btn = document.getElementById('cf-btn-text');
+  btn.textContent = 'Sending…';
+  setTimeout(() => {
+    document.querySelector('.consult-form-grid').style.display = 'none';
+    document.querySelector('.cf-submit').style.display = 'none';
+    document.querySelector('.cf-privacy').style.display = 'none';
+    document.getElementById('cf-success').classList.add('show');
+  }, 900);
+}
+</script>
+
+<!-- ===================== CHATBOT WIDGET ===================== -->
+<style>
+/* ===== CHATBOT ===== */
+#chat-widget {
+  position: fixed; bottom: 28px; right: 28px; z-index: 9999;
+  display: flex; flex-direction: column; align-items: flex-end; gap: 14px;
+  font-family: var(--font-b);
+}
+
+/* Bubble toggle button */
+#chat-toggle {
+  width: 60px; height: 60px; border-radius: 50%;
+  background: linear-gradient(135deg, #0A7A6A, #14A68F);
+  border: none; cursor: pointer;
+  box-shadow: 0 8px 28px rgba(10,122,106,0.45);
+  display: flex; align-items: center; justify-content: center;
+  transition: transform 0.25s cubic-bezier(0.4,0,0.2,1), box-shadow 0.25s;
+  position: relative;
+  flex-shrink: 0;
+}
+#chat-toggle:hover {
+  transform: scale(1.08);
+  box-shadow: 0 12px 36px rgba(10,122,106,0.5);
+}
+#chat-toggle svg { transition: opacity 0.2s, transform 0.2s; }
+#chat-toggle .icon-close {
+  position: absolute; opacity: 0; transform: rotate(-90deg) scale(0.7);
+}
+#chat-widget.open #chat-toggle .icon-chat { opacity: 0; transform: rotate(90deg) scale(0.7); }
+#chat-widget.open #chat-toggle .icon-close { opacity: 1; transform: rotate(0deg) scale(1); }
+
+/* Notification dot */
+#chat-dot {
+  position: absolute; top: 4px; right: 4px;
+  width: 12px; height: 12px; border-radius: 50%;
+  background: #E8563A; border: 2px solid white;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+  0%,100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.3); opacity: 0.7; }
+}
+#chat-widget.open #chat-dot { display: none; }
+
+/* Chat window */
+#chat-window {
+  width: 360px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(10,50,40,0.18), 0 2px 8px rgba(10,122,106,0.08);
+  overflow: hidden;
+  display: none;
+  flex-direction: column;
+  transform-origin: bottom right;
+  animation: chatPop 0.28s cubic-bezier(0.34,1.56,0.64,1) both;
+  max-height: 560px;
+}
+@keyframes chatPop {
+  from { opacity: 0; transform: scale(0.85) translateY(16px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+#chat-widget.open #chat-window { display: flex; }
+
+/* Header */
+.chat-header {
+  background: linear-gradient(135deg, #0A7A6A 0%, #14A68F 100%);
+  padding: 1rem 1.2rem;
+  display: flex; align-items: center; gap: 12px;
+}
+.chat-header-avatar {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; flex-shrink: 0;
+}
+.chat-header-info { flex: 1; }
+.chat-header-name { font-size: 14px; font-weight: 700; color: white; line-height: 1.2; }
+.chat-header-status {
+  font-size: 11px; color: rgba(255,255,255,0.75);
+  display: flex; align-items: center; gap: 5px; margin-top: 2px;
+}
+.chat-status-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #7EF5C8; animation: breathe 2.4s ease-in-out infinite;
+}
+
+/* Messages area */
+.chat-messages {
+  flex: 1; overflow-y: auto; padding: 1.2rem;
+  display: flex; flex-direction: column; gap: 10px;
+  background: #F7FBFA;
+  min-height: 200px; max-height: 320px;
+}
+.chat-messages::-webkit-scrollbar { width: 3px; }
+.chat-messages::-webkit-scrollbar-thumb { background: #D8ECEA; border-radius: 4px; }
+
+.chat-msg {
+  display: flex; gap: 8px; align-items: flex-end;
+}
+.chat-msg.bot { flex-direction: row; }
+.chat-msg.user { flex-direction: row-reverse; }
+
+.chat-msg-av {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: linear-gradient(135deg, #0A7A6A, #14A68F);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; flex-shrink: 0;
+}
+.chat-msg-bubble {
+  max-width: 78%; padding: 9px 13px;
+  border-radius: 16px; font-size: 13.5px; line-height: 1.55;
+}
+.chat-msg.bot .chat-msg-bubble {
+  background: white; color: #12201C;
+  border-bottom-left-radius: 4px;
+  box-shadow: 0 1px 4px rgba(10,50,40,0.08);
+}
+.chat-msg.user .chat-msg-bubble {
+  background: #0A7A6A; color: white;
+  border-bottom-right-radius: 4px;
+}
+
+/* Typing indicator */
+.chat-typing {
+  display: flex; gap: 4px; padding: 10px 14px;
+  background: white; border-radius: 16px; border-bottom-left-radius: 4px;
+  box-shadow: 0 1px 4px rgba(10,50,40,0.08);
+  width: fit-content;
+}
+.chat-typing span {
+  width: 7px; height: 7px; border-radius: 50%; background: #14A68F;
+  animation: typingDot 1.2s ease-in-out infinite;
+}
+.chat-typing span:nth-child(2) { animation-delay: 0.2s; }
+.chat-typing span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes typingDot {
+  0%,60%,100% { transform: translateY(0); opacity: 0.4; }
+  30% { transform: translateY(-5px); opacity: 1; }
+}
+
+/* Input area */
+.chat-input-area {
+  padding: 0.9rem 1rem;
+  border-top: 1px solid #E6F5F3;
+  background: white;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.chat-input-row {
+  display: flex; gap: 8px; align-items: center;
+}
+.chat-input-row input {
+  flex: 1; padding: 9px 14px;
+  border: 1.5px solid #D8ECEA; border-radius: 30px;
+  font-family: var(--font-b); font-size: 13.5px; color: #12201C;
+  outline: none; transition: border-color 0.2s;
+  background: #F7FBFA;
+}
+.chat-input-row input:focus { border-color: #0A7A6A; background: white; }
+.chat-input-row input::placeholder { color: #7A9992; }
+.chat-send {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: #0A7A6A; border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s, transform 0.15s;
+  flex-shrink: 0;
+}
+.chat-send:hover { background: #065E52; transform: scale(1.08); }
+
+/* Quick reply buttons */
+.chat-quick-replies {
+  display: flex; flex-wrap: wrap; gap: 6px;
+}
+.chat-qr {
+  padding: 5px 12px; border-radius: 20px;
+  border: 1.5px solid #D8ECEA; background: white;
+  font-family: var(--font-b); font-size: 12px; font-weight: 600;
+  color: #0A7A6A; cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+.chat-qr:hover { background: #E6F5F3; border-color: #0A7A6A; }
+
+/* Time slots grid */
+.chat-slots {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 6px; margin-top: 4px;
+}
+.chat-slot {
+  padding: 7px 10px; border-radius: 10px;
+  border: 1.5px solid #D8ECEA; background: white;
+  font-family: var(--font-b); font-size: 12px; font-weight: 600;
+  color: #12201C; cursor: pointer; text-align: center;
+  transition: all 0.15s;
+}
+.chat-slot:hover { background: #0A7A6A; color: white; border-color: #0A7A6A; }
+.chat-slot.booked { background: #0A7A6A; color: white; border-color: #0A7A6A; cursor: default; }
+
+/* Progress bar */
+.chat-progress {
+  height: 3px; background: #E6F5F3;
+  position: relative; overflow: hidden;
+}
+.chat-progress-fill {
+  height: 100%; background: linear-gradient(90deg, #0A7A6A, #14A68F);
+  transition: width 0.5s ease;
+}
+
+@media (max-width: 420px) {
+  #chat-window { width: calc(100vw - 32px); }
+  #chat-widget { bottom: 16px; right: 16px; }
+}
+</style>
+
+<!-- Chat HTML -->
+<div id="chat-widget">
+  <div id="chat-window">
+    <!-- Progress -->
+    <div class="chat-progress">
+      <div class="chat-progress-fill" id="chat-progress-fill" style="width:0%"></div>
+    </div>
+    <!-- Header -->
+    <div class="chat-header">
+      <div class="chat-header-avatar">🎧</div>
+      <div class="chat-header-info">
+        <div class="chat-header-name">AvivaVirtual Support</div>
+        <div class="chat-header-status">
+          <div class="chat-status-dot"></div>
+          Online · Typically replies instantly
+        </div>
+      </div>
+    </div>
+    <!-- Messages -->
+    <div class="chat-messages" id="chat-messages"></div>
+    <!-- Input -->
+    <div class="chat-input-area" id="chat-input-area">
+      <div class="chat-input-row">
+        <input type="text" id="chat-input" placeholder="Type a message…" autocomplete="off"/>
+        <button class="chat-send" id="chat-send-btn" onclick="chatSend()">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M14 8L2 2l2.5 6L2 14l12-6z" fill="white"/>
+          </svg>
+        </button>
+      </div>
+      <div class="chat-quick-replies" id="chat-qr-area"></div>
+    </div>
+  </div>
+
+  <!-- Toggle button -->
+  <button id="chat-toggle" onclick="toggleChat()" aria-label="Open chat">
+    <div id="chat-dot"></div>
+    <!-- Chat icon -->
+    <svg class="icon-chat" width="26" height="26" viewBox="0 0 26 26" fill="none">
+      <path d="M22 4H4a2 2 0 00-2 2v12a2 2 0 002 2h4l4 4 4-4h6a2 2 0 002-2V6a2 2 0 00-2-2z" fill="white" opacity="0.95"/>
+      <circle cx="9" cy="13" r="1.3" fill="#0A7A6A"/>
+      <circle cx="13" cy="13" r="1.3" fill="#0A7A6A"/>
+      <circle cx="17" cy="13" r="1.3" fill="#0A7A6A"/>
+    </svg>
+    <!-- Close icon -->
+    <svg class="icon-close" width="22" height="22" viewBox="0 0 22 22" fill="none">
+      <path d="M4 4l14 14M18 4L4 18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+    </svg>
+  </button>
+</div>
+
+<script>
+// ===== CHATBOT ENGINE =====
+const CHAT_STEPS = [
+  {
+    id: 'greet',
+    bot: ['👋 Hi there! Welcome to **AvivaVirtual**.', 'How may I help you today?'],
+    type: 'quickreply',
+    options: ['Book a free consultation', 'Tech support help', 'Customer care question', 'Something else'],
+    next: 'ask_name'
+  },
+  {
+    id: 'ask_name',
+    bot: ["Great! I'd love to get you set up with a **free 15-minute session**. First — what's your full name?"],
+    type: 'text',
+    key: 'name',
+    placeholder: 'Your full name…',
+    validate: v => v.length > 1,
+    errMsg: 'Please enter your name so we can greet you properly 😊',
+    next: 'ask_email'
+  },
+  {
+    id: 'ask_email',
+    bot: ['Nice to meet you, {name}! 👍', 'What\'s the best email address to send your confirmation to?'],
+    type: 'text',
+    key: 'email',
+    placeholder: 'your@email.com',
+    validate: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v),
+    errMsg: 'Please enter a valid email address.',
+    next: 'ask_phone'
+  },
+  {
+    id: 'ask_phone',
+    bot: ['Perfect. And a phone number in case we need to reach you?'],
+    type: 'text',
+    key: 'phone',
+    placeholder: '+1 (514) 000-0000',
+    validate: v => v.replace(/\D/g,'').length >= 7,
+    errMsg: 'Please enter a valid phone number.',
+    next: 'ask_slot'
+  },
+  {
+    id: 'ask_slot',
+    bot: ['Almost done! 🗓️ Pick a **15-minute slot** that works for you:'],
+    type: 'slots',
+    next: 'confirm'
+  },
+  {
+    id: 'confirm',
+    bot: ['✅ You\'re all set, {name}!', 'Your free 15-minute consultation is confirmed for **{slot}**. We\'ll send details to **{email}** and may call **{phone}** to confirm.', 'See you soon! 👋'],
+    type: 'done'
+  }
+];
+
+const chatData = {};
+let chatStep = 0;
+let chatOpen = false;
+let chatStarted = false;
+
+function toggleChat() {
+  chatOpen = !chatOpen;
+  document.getElementById('chat-widget').classList.toggle('open', chatOpen);
+  if (chatOpen && !chatStarted) {
+    chatStarted = true;
+    setTimeout(() => runStep(0), 300);
+  }
+  if (chatOpen) {
+    setTimeout(() => document.getElementById('chat-input').focus(), 350);
+  }
+}
+
+function getSlots() {
+  const now = new Date();
+  const slots = [];
+  const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const hours = [9,10,11,14,15,16];
+  for (let d = 0; d < 5 && slots.length < 8; d++) {
+    const day = new Date(now);
+    day.setDate(now.getDate() + d + 1);
+    const dayName = days[day.getDay()];
+    const monthDay = `${day.getMonth()+1}/${day.getDate()}`;
+    for (const h of hours) {
+      const ampm = h >= 12 ? 'PM' : 'AM';
+      const h12 = h > 12 ? h - 12 : h;
+      slots.push(`${dayName} ${monthDay} · ${h12}:00 ${ampm}`);
+      if (slots.length >= 8) break;
+    }
+  }
+  return slots;
+}
+
+function runStep(idx) {
+  const step = CHAT_STEPS[idx];
+  if (!step) return;
+  chatStep = idx;
+  updateProgress(idx);
+
+  const msgs = step.bot.map(m => interpolate(m));
+  showTyping().then(() => {
+    addBotMsg(msgs[0]);
+    let chain = Promise.resolve();
+    for (let i = 1; i < msgs.length; i++) {
+      const msg = msgs[i];
+      chain = chain.then(() => delay(500)).then(() => showTyping()).then(() => addBotMsg(msg));
+    }
+    chain.then(() => {
+      setupInput(step);
+    });
+  });
+}
+
+function setupInput(step) {
+  const inputEl = document.getElementById('chat-input');
+  const qrArea = document.getElementById('chat-qr-area');
+  qrArea.innerHTML = '';
+
+  if (step.type === 'quickreply') {
+    inputEl.style.display = 'none';
+    document.getElementById('chat-send-btn').style.display = 'none';
+    step.options.forEach(opt => {
+      const btn = document.createElement('button');
+      btn.className = 'chat-qr';
+      btn.textContent = opt;
+      btn.onclick = () => {
+        chatData.topic = opt;
+        addUserMsg(opt);
+        qrArea.innerHTML = '';
+        inputEl.style.display = '';
+        document.getElementById('chat-send-btn').style.display = '';
+        delay(400).then(() => runStep(findStep('ask_name')));
+      };
+      qrArea.appendChild(btn);
+    });
+
+  } else if (step.type === 'slots') {
+    inputEl.style.display = 'none';
+    document.getElementById('chat-send-btn').style.display = 'none';
+    const grid = document.createElement('div');
+    grid.className = 'chat-slots';
+    getSlots().forEach(slot => {
+      const btn = document.createElement('button');
+      btn.className = 'chat-slot';
+      btn.textContent = slot;
+      btn.onclick = () => {
+        chatData.slot = slot;
+        btn.classList.add('booked');
+        grid.querySelectorAll('.chat-slot:not(.booked)').forEach(b => b.disabled = true);
+        addUserMsg(slot);
+        delay(500).then(() => runStep(findStep('confirm')));
+      };
+      grid.appendChild(btn);
+    });
+    qrArea.appendChild(grid);
+
+  } else if (step.type === 'text') {
+    inputEl.style.display = '';
+    document.getElementById('chat-send-btn').style.display = '';
+    inputEl.placeholder = step.placeholder || 'Type here…';
+    inputEl.value = '';
+    inputEl.onkeydown = (e) => { if (e.key === 'Enter') chatSend(); };
+    inputEl.focus();
+
+  } else if (step.type === 'done') {
+    inputEl.style.display = 'none';
+    document.getElementById('chat-send-btn').style.display = 'none';
+    updateProgress(CHAT_STEPS.length);
+    // show restart
+    const btn = document.createElement('button');
+    btn.className = 'chat-qr';
+    btn.textContent = '↩ Start over';
+    btn.onclick = () => {
+      Object.keys(chatData).forEach(k => delete chatData[k]);
+      document.getElementById('chat-messages').innerHTML = '';
+      qrArea.innerHTML = '';
+      inputEl.style.display = '';
+      document.getElementById('chat-send-btn').style.display = '';
+      updateProgress(0);
+      chatStarted = false;
+      runStep(0);
+    };
+    qrArea.appendChild(btn);
+  }
+}
+
+function chatSend() {
+  const step = CHAT_STEPS[chatStep];
+  if (!step || step.type !== 'text') return;
+  const inputEl = document.getElementById('chat-input');
+  const val = inputEl.value.trim();
+  if (!val) return;
+  if (step.validate && !step.validate(val)) {
+    addBotMsg(step.errMsg);
+    inputEl.value = '';
+    return;
+  }
+  chatData[step.key] = val;
+  addUserMsg(val);
+  inputEl.value = '';
+  delay(500).then(() => runStep(findStep(step.next)));
+}
+
+function findStep(id) {
+  return CHAT_STEPS.findIndex(s => s.id === id);
+}
+
+function interpolate(str) {
+  return str
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\{name\}/g, chatData.name || '')
+    .replace(/\{email\}/g, chatData.email || '')
+    .replace(/\{phone\}/g, chatData.phone || '')
+    .replace(/\{slot\}/g, chatData.slot || '');
+}
+
+function addBotMsg(html) {
+  const msgs = document.getElementById('chat-messages');
+  const wrap = document.createElement('div');
+  wrap.className = 'chat-msg bot';
+  wrap.innerHTML = `
+    <div class="chat-msg-av">🎧</div>
+    <div class="chat-msg-bubble">${html}</div>`;
+  msgs.appendChild(wrap);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function addUserMsg(text) {
+  const msgs = document.getElementById('chat-messages');
+  const wrap = document.createElement('div');
+  wrap.className = 'chat-msg user';
+  wrap.innerHTML = `<div class="chat-msg-bubble">${text}</div>`;
+  msgs.appendChild(wrap);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function showTyping() {
+  return new Promise(resolve => {
+    const msgs = document.getElementById('chat-messages');
+    const typing = document.createElement('div');
+    typing.className = 'chat-msg bot';
+    typing.id = 'chat-typing-indicator';
+    typing.innerHTML = `
+      <div class="chat-msg-av">🎧</div>
+      <div class="chat-typing"><span></span><span></span><span></span></div>`;
+    msgs.appendChild(typing);
+    msgs.scrollTop = msgs.scrollHeight;
+    setTimeout(() => {
+      const t = document.getElementById('chat-typing-indicator');
+      if (t) t.remove();
+      resolve();
+    }, 700);
+  });
+}
+
+function updateProgress(idx) {
+  const pct = Math.round((idx / (CHAT_STEPS.length - 1)) * 100);
+  document.getElementById('chat-progress-fill').style.width = pct + '%';
+}
+
+function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+// Allow Enter key globally when chat is open
+document.getElementById('chat-input').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') chatSend();
 });
 </script>
 </body>
